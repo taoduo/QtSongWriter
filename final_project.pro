@@ -13,8 +13,26 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    bluesUtils.cpp \
+    CBluesDrumTrack.cpp \
+    CMidiPacket43.cpp \
+    CMidiTrack.cpp \
+    functorTests.cpp \
+    RtMidi.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    bluesUtils.h \
+    CBluesDrumTrack.h \
+    CBluesTrack.h \
+    CMidiPacket43.h \
+    CMidiTrack.h \
+    functorTests.h \
+    RtMidi.h
 
 FORMS    += mainwindow.ui
+
+DISTFILES += \
+    final_project.pro.user \
+    drums.txt \
+    readme.md
