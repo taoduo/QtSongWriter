@@ -36,3 +36,15 @@ DISTFILES += \
     final_project.pro.user \
     drums.txt \
     readme.md
+CONFIG += c++11
+macx {
+    INCLUDEPATH += /Library/Frameworks/
+    QMAKE_LFLAGS += -F/Library/Frameworks
+    QMAKE_CXXFLAGS += -D__MACOSX_CORE__
+    LIBS += -framework CoreFoundation \
+        -framework CoreMIDI \
+        -framework CoreAudio
+    QMAKE_CXXFLAGS_WARN_ON += -Wno-unknown-pragmas
+    QMAKE_MAC_SDK = macosx10.10
+}
+
