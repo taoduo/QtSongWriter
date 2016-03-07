@@ -2,6 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#ifndef CMIDIPACKET32_H_
+#include "CMidiPacket43.h"
+#endif
+#include <QTimer>
+#include "RtMidi.h"
 
 namespace Ui {
 class MainWindow;
@@ -16,6 +21,7 @@ public:
     ~MainWindow();
 
 private slots:
+    void txTimerAction();
     void on_pushButton_play_clicked();
 
 private:

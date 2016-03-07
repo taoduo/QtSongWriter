@@ -30,7 +30,6 @@ HEADERS  += mainwindow.h \
     functorTests.h \
     RtMidi.h
 
-FORMS    += mainwindow.ui
 
 DISTFILES += \
     final_project.pro.user \
@@ -48,3 +47,4 @@ macx {
     QMAKE_MAC_SDK = macosx10.10
 }
 
+FORMS    += mainwindow.ui
