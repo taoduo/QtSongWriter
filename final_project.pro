@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     CMidiPacket43.cpp \
     CMidiTrack.cpp \
     functorTests.cpp \
-    RtMidi.cpp
+    RtMidi.cpp \
+    CTrack_1.cpp
 
 HEADERS  += mainwindow.h \
     bluesUtils.h \
@@ -28,7 +29,8 @@ HEADERS  += mainwindow.h \
     CMidiPacket43.h \
     CMidiTrack.h \
     functorTests.h \
-    RtMidi.h
+    RtMidi.h \
+    CTrack_1.h
 
 
 DISTFILES += \

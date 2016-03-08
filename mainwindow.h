@@ -36,6 +36,8 @@ private slots:
 
     void on_horizontalSlider_5_vol_valueChanged(int value);
 
+    void on_pushButton_Enter_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -1,6 +1,9 @@
 #ifndef CBLUESDRUMTRACK_H
 #include "CBluesDrumTrack.h"
 #endif
+#ifndef CTRACK_1_H
+#include "CTrack_1.h"
+#endif
 #ifndef FUNCTOR_H_
 #include "functorTests.h"
 #endif
@@ -19,11 +22,21 @@ RtMidiOut *midiout = 0;
 std::vector<CMidiPacket43> play_trk;  // chrono vectors
 std::vector<CMidiPacket43>::iterator cur_pkt;
 std::vector<CMidiPacket43>::iterator next_pkt;
+std::vector<std::string> cur_input_note_string;
+std::vector<std::string> track_1_notes;
 
 
-
-
-
+void write_track_1() {  // P I A N O
+  uint16_t start_note = 48;
+  uint16_t chan = 1;
+  uint16_t patch = 0;  // piano
+  uint16_t vol = 110;
+  uint16_t pan = 80;  // pan right
+  CTrack_1 trk_1(1);
+  trk_1.write_track(cur_input_note_string, chan, patch, vol, pan);
+  std::copy(trk_1.m_trk.begin(), trk_1.m_trk.end(),
+            std::back_inserter(play_trk));
+}
 void write_drums() {  // D R U M S
   uint16_t vol = 100;
   CBluesDrumTrack drum_trk(1);
@@ -123,7 +136,7 @@ void MainWindow::on_pushButton_play_clicked()
     //CMidiPacket43 mp2{5000,0x80,60,0};
     //sendCMidiPacket(mp1);
     //sendCMidiPacket(mp2);
-
+    write_track_1();
     write_drums();
 
     // sort the play_trk using CMidiPacket43::operator<
@@ -135,6 +148,46 @@ void MainWindow::on_pushButton_play_clicked()
     timer->start();
 }
 
+void MainWindow::on_pushButton_Enter_clicked()
+{
+    cur_input_note_string.push_back(ui->lineEdit_0->text().toStdString());
+    cur_input_note_string.push_back(ui->lineEdit_1->text().toStdString());
+    cur_input_note_string.push_back(ui->lineEdit_2->text().toStdString());
+    cur_input_note_string.push_back(ui->lineEdit_3->text().toStdString());
+    cur_input_note_string.push_back(ui->lineEdit_4->text().toStdString());
+    cur_input_note_string.push_back(ui->lineEdit_5->text().toStdString());
+    cur_input_note_string.push_back(ui->lineEdit_6->text().toStdString());
+    cur_input_note_string.push_back(ui->lineEdit_7->text().toStdString());
+    cur_input_note_string.push_back(ui->lineEdit_8->text().toStdString());
+    cur_input_note_string.push_back(ui->lineEdit_9->text().toStdString());
+    cur_input_note_string.push_back(ui->lineEdit_10->text().toStdString());
+    cur_input_note_string.push_back(ui->lineEdit_11->text().toStdString());
+    cur_input_note_string.push_back(ui->lineEdit_12->text().toStdString());
+    cur_input_note_string.push_back(ui->lineEdit_13->text().toStdString());
+    cur_input_note_string.push_back(ui->lineEdit_14->text().toStdString());
+    cur_input_note_string.push_back(ui->lineEdit_15->text().toStdString());
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//interface stuffs, easy to understand
 void MainWindow::on_horizontalSlider_tempo_valueChanged(int value)
 {
     ui->label_tempo->setText(QString::number(value));
@@ -167,4 +220,6 @@ void MainWindow::on_horizontalSlider_5_vol_valueChanged(int value)
 {
     ui->label_5_vol->setText(QString::number(value));
 }
+
+
 
