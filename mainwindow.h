@@ -24,6 +24,18 @@ private slots:
     void txTimerAction();
     void on_pushButton_play_clicked();
 
+    void on_horizontalSlider_tempo_valueChanged(int value);
+
+    void on_horizontalSlider_1_vol_valueChanged(int value);
+
+    void on_horizontalSlider_2_vol_valueChanged(int value);
+
+    void on_horizontalSlider_3_vol_valueChanged(int value);
+
+    void on_horizontalSlider_4_vol_valueChanged(int value);
+
+    void on_horizontalSlider_5_vol_valueChanged(int value);
+
 private:
     Ui::MainWindow *ui;
 };

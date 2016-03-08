@@ -70,8 +70,7 @@ void sendCMidiPacket(const CMidiPacket43 &mp) {
 
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     try {
@@ -135,3 +134,37 @@ void MainWindow::on_pushButton_play_clicked()
     connect(timer, SIGNAL(timeout()), this, SLOT(txTimerAction()));
     timer->start();
 }
+
+void MainWindow::on_horizontalSlider_tempo_valueChanged(int value)
+{
+    ui->label_tempo->setText(QString::number(value));
+}
+
+void MainWindow::on_horizontalSlider_1_vol_valueChanged(int value)
+{
+    ui->label_1_vol->setText(QString::number(value));
+}
+
+void MainWindow::on_horizontalSlider_2_vol_valueChanged(int value)
+{
+    ui->label_2_vol->setText(QString::number(value));
+}
+
+
+void MainWindow::on_horizontalSlider_3_vol_valueChanged(int value)
+{
+    ui->label_3_vol->setText(QString::number(value));
+}
+
+
+void MainWindow::on_horizontalSlider_4_vol_valueChanged(int value)
+{
+    ui->label_4_vol->setText(QString::number(value));
+}
+
+
+void MainWindow::on_horizontalSlider_5_vol_valueChanged(int value)
+{
+    ui->label_5_vol->setText(QString::number(value));
+}
+
