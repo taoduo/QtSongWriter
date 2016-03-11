@@ -458,3 +458,27 @@ void MainWindow::on_comboBox_1_cat_currentIndexChanged(int index)
     ui->comboBox_1_instru->clear();
     ui->comboBox_1_instru->addItems(g_all_lists.at(index));
 }
+
+void MainWindow::on_comboBox_2_cat_currentIndexChanged(int index)
+{
+    ui->comboBox_2_instru->clear();
+    ui->comboBox_2_instru->addItems(g_all_lists.at(index));
+}
+
+void MainWindow::on_comboBox_3_cat_currentIndexChanged(int index)
+{
+    ui->comboBox_3_instru->clear();
+    ui->comboBox_3_instru->addItems(g_all_lists.at(index));
+}
+
+void MainWindow::on_comboBox_4_cat_currentIndexChanged(int index)
+{
+    ui->comboBox_4_instru->clear();
+    ui->comboBox_4_instru->addItems(g_all_lists.at(index));
+}
+
+void MainWindow::on_comboBox_5_cat_currentIndexChanged(int index)
+{
+    ui->comboBox_5_instru->clear();
+    ui->comboBox_5_instru->addItems(g_all_lists.at(index));
+}
