@@ -102,6 +102,9 @@
                <height>16777215</height>
               </size>
              </property>
+             <property name="text">
+              <string>72</string>
+             </property>
             </widget>
            </item>
            <item>
@@ -111,6 +114,9 @@
                <width>35</width>
                <height>16777215</height>
               </size>
+             </property>
+             <property name="text">
+              <string>72</string>
              </property>
             </widget>
            </item>
@@ -122,6 +128,9 @@
                <height>16777215</height>
               </size>
              </property>
+             <property name="text">
+              <string>72</string>
+             </property>
             </widget>
            </item>
            <item>
@@ -131,6 +140,9 @@
                <width>35</width>
                <height>16777215</height>
               </size>
+             </property>
+             <property name="text">
+              <string>72</string>
              </property>
             </widget>
            </item>
@@ -142,6 +154,9 @@
                <height>16777215</height>
               </size>
              </property>
+             <property name="text">
+              <string>72</string>
+             </property>
             </widget>
            </item>
            <item>
@@ -151,6 +166,9 @@
                <width>35</width>
                <height>16777215</height>
               </size>
+             </property>
+             <property name="text">
+              <string>72</string>
              </property>
             </widget>
            </item>
@@ -162,6 +180,9 @@
                <height>16777215</height>
               </size>
              </property>
+             <property name="text">
+              <string>72</string>
+             </property>
             </widget>
            </item>
            <item>
@@ -171,6 +192,9 @@
                <width>35</width>
                <height>16777215</height>
               </size>
+             </property>
+             <property name="text">
+              <string>72</string>
              </property>
             </widget>
            </item>
@@ -182,6 +206,9 @@
                <height>16777215</height>
               </size>
              </property>
+             <property name="text">
+              <string>72</string>
+             </property>
             </widget>
            </item>
            <item>
@@ -191,6 +218,9 @@
                <width>35</width>
                <height>16777215</height>
               </size>
+             </property>
+             <property name="text">
+              <string>72</string>
              </property>
             </widget>
            </item>
@@ -202,6 +232,9 @@
                <height>16777215</height>
               </size>
              </property>
+             <property name="text">
+              <string>72</string>
+             </property>
             </widget>
            </item>
            <item>
@@ -211,6 +244,9 @@
                <width>35</width>
                <height>16777215</height>
               </size>
+             </property>
+             <property name="text">
+              <string>72</string>
              </property>
             </widget>
            </item>
@@ -222,6 +258,9 @@
                <height>16777215</height>
               </size>
              </property>
+             <property name="text">
+              <string>72</string>
+             </property>
             </widget>
            </item>
            <item>
@@ -231,6 +270,9 @@
                <width>35</width>
                <height>16777215</height>
               </size>
+             </property>
+             <property name="text">
+              <string>72</string>
              </property>
             </widget>
            </item>
@@ -242,6 +284,9 @@
                <height>16777215</height>
               </size>
              </property>
+             <property name="text">
+              <string>72</string>
+             </property>
             </widget>
            </item>
            <item>
@@ -251,6 +296,9 @@
                <width>35</width>
                <height>16777215</height>
               </size>
+             </property>
+             <property name="text">
+              <string>72</string>
              </property>
             </widget>
            </item>

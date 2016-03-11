@@ -85,7 +85,10 @@ void sendCMidiPacket(const CMidiPacket43 &mp) {
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent), ui(new Ui::MainWindow)
 {
+
     ui->setupUi(this);
+    setup_comboBox_category();
+    setup_comboBox_instru();
     try {
       midiout = new RtMidiOut();
     }
@@ -117,7 +120,7 @@ void MainWindow::txTimerAction() {
   next_pkt++;
   QTimer *timer = qobject_cast<QTimer *>(sender());
 
-  if (cur_pkt == play_trk.end()) {
+  if (cur_pkt == play_trk.end()-1) {
     timer->stop();
     return;
   }
@@ -136,13 +139,16 @@ void MainWindow::on_pushButton_play_clicked()
     //CMidiPacket43 mp2{5000,0x80,60,0};
     //sendCMidiPacket(mp1);
     //sendCMidiPacket(mp2);
-    write_track_1();
-    write_drums();
+
+    //write_drums();
 
     // sort the play_trk using CMidiPacket43::operator<
     std::sort(play_trk.begin(), play_trk.end());
     cur_pkt = play_trk.begin();
     next_pkt = play_trk.begin();
+    for(CMidiPacket43 mp : play_trk) {
+        std::cout << mp;
+    }
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(txTimerAction()));
     timer->start();
@@ -166,6 +172,7 @@ void MainWindow::on_pushButton_Enter_clicked()
     cur_input_note_string.push_back(ui->lineEdit_13->text().toStdString());
     cur_input_note_string.push_back(ui->lineEdit_14->text().toStdString());
     cur_input_note_string.push_back(ui->lineEdit_15->text().toStdString());
+    write_track_1();
 }
 
 
@@ -221,5 +228,44 @@ void MainWindow::on_horizontalSlider_5_vol_valueChanged(int value)
     ui->label_5_vol->setText(QString::number(value));
 }
 
+void MainWindow::setup_comboBox_category(){
+    QStringList categories;
+    categories << "<None>"
+          << "1 Piano"
+          << "2 Chromatic Percussion"
+          << "3 Organ"
+          << "4 Guitar"
+          << "5 Bass"
+          << "6 Strings"
+          << "7 Ensemble"
+          << "8 Brass"
+          << "9 Reed"
+          << "10 Pipe"
+          << "11 Synth Lead"
+          << "12 Synth Pad"
+          << "13 Synth Effects"
+          << "14 Ethnic"
+          << "15 Percussive"
+          << "16 Sound Effects";
+    ui->comboBox_1_cat->addItems(categories);
+    ui->comboBox_2_cat->addItems(categories);
+    ui->comboBox_3_cat->addItems(categories);
+    ui->comboBox_4_cat->addItems(categories);
+    ui->comboBox_5_cat->addItems(categories);
+}
 
 
+void MainWindow::setup_comboBox_instru() {
+
+  QStringList pianoList;
+  pianoList<<"1 Acoustic Grand Piano"
+          <<"2 Bright Acoustic Piano"
+          <<"3 Electric Grand Piano"
+          <<"4 Honky-tonk Piano"
+          <<"5 Electric Piano 1"
+          <<"6 Electric Piano 2"
+          <<"7 Harpsichord"
+          <<"8 Clavinet";
+
+    ui->comboBox_1_instru->addItems(pianoList);
+}

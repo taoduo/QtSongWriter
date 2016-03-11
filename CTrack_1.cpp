@@ -40,25 +40,22 @@ void CTrack_1::write_track(std::vector<std::string> notes, uint16_t chan,
     patch_change(0, chan, patch);
     control_volume(0, chan, vol);
     control_pan(0, chan, pan);
-    auto start_note = std::stoi(notes.at(0));
-    std::cout<<notes.at(0)<<std::endl;
-    for (int n = 0; n < m_repeats; ++n){
-      for (int ix = 1; ix <= m_measures; ++ix) {
-        write_one_measure(ix + (n * 12), notes, chan);
-      }
+
+
+
+    write_one_measure(1, notes, chan);
+
 }
-}
+
 
 void CTrack_1::write_one_measure(int meas_num, std::vector<std::string> notes,
                                          uint16_t chan) {
     CMidiPacket43 mp;
-      uint32_t meas_tm = (meas_num - 1) * 4000;
+      uint32_t meas_tm = (meas_num - 1) * 1000;
       for (int i = 0; i < notes.size(); i++) {
           int note = std::stoi(notes.at(i));
-        note_on(meas_tm + 50, chan, note, 100);
-
-
-        note_off(meas_tm + 75 + 50, chan, note);
+        note_on(meas_tm + i*62.5, chan, note, 100);
+        note_off(meas_tm + i*62.5 + 50, chan, note);
 
       }
 }

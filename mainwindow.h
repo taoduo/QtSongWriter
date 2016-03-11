@@ -38,6 +38,9 @@ private slots:
 
     void on_pushButton_Enter_clicked();
 
+    void setup_comboBox_category();
+
+    void setup_comboBox_instru();
 private:
     Ui::MainWindow *ui;
 };
