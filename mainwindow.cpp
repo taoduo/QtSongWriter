@@ -289,8 +289,24 @@ void MainWindow::setup_instru_name_list() {
                   <<"14 Xylophone"
                   <<"15 Tubular Bells"
                   <<"16 Dulcimer";
-  g_organ_list<<"<None>";
-  /**g_guitar_list;
+  g_organ_list<<"<None>"
+                <<"17 Drawbar Organ"
+                <<"18 Percussive Organ"
+                <<"19 Rock Organ"
+                <<"20 Church Organ"
+                <<"21 Reed Organ"
+                <<"22 Accordion"
+                <<"23 Harmonica"
+                <<"24 Tango Accordion";
+  g_guitar_list<<"<None>"
+                 <<"25 Acoustic Guitar (nylon)"
+                 <<"26 Acoustic Guitar (steel)"
+                 <<"27 Electric Guitar (jazz)"
+                 <<"28 Electric Guitar (clean)"
+                 <<"29 Electric Guitar (muted)"
+                 <<"30 Overdriven Guitar"
+                 <<"31 Distortion Guitar"
+                 <<"32 Guitar Harmonics";
   g_bass_list;
   g_strings_list;
   g_ensemble_list;
@@ -299,6 +315,6 @@ void MainWindow::setup_instru_name_list() {
   g_pipe_list;
   g_synth_lead_list;
   g_synth_pad_list;
-  g_synth_effect_list;**/
+  g_synth_effect_list;
     ui->comboBox_1_instru->addItems(g_piano_list);
 }
