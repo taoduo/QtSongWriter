@@ -116,9 +116,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 
     ui->setupUi(this);
-    setup_comboBox_category();
     setup_instru_name_list();
-
+    setup_comboBox_category();
     init_all_chan_combo_box();
 
     try {
