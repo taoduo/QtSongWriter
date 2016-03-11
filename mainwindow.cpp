@@ -45,6 +45,14 @@ QStringList g_percussive_list;
 QStringList g_ethnic_list;
 QStringList g_effects_list;
 
+int g_tempo = 60;
+int g_vol1 = 100;
+int g_vol2 = 100;
+int g_vol3 = 100;
+int g_vol4 = 100;
+int g_vol5 = 100;
+int g_currentTrack = 1;
+
 void write_track_1() {  // P I A N O
   uint16_t start_note = 48;
   uint16_t chan = 1;
@@ -69,6 +77,15 @@ void chan_combo_box_init(QComboBox *combo_box) {
     QStringList chan_list;
     chan_list << "1" << "2" <<"3" << "4" <<"5" << "6" <<"7" << "8" <<"9" << "10" <<"11" << "12" <<"13" << "14" <<"15" << "16";
     (*combo_box).addItems(chan_list);
+}
+
+void MainWindow::setup_trk_combox_box() {
+    ui->comboBox_input_track->addItem("Track 1");
+    ui->comboBox_input_track->addItem("Track 2");
+    ui->comboBox_input_track->addItem("Track 3");
+    ui->comboBox_input_track->addItem("Track 4");
+    ui->comboBox_input_track->addItem("Track 5");
+
 }
 
 void MainWindow::init_all_chan_combo_box() {
@@ -229,34 +246,40 @@ void MainWindow::on_pushButton_Enter_clicked()
 void MainWindow::on_horizontalSlider_tempo_valueChanged(int value)
 {
     ui->label_tempo->setText(QString::number(value));
+    g_tempo = value;
 }
 
 void MainWindow::on_horizontalSlider_1_vol_valueChanged(int value)
 {
     ui->label_1_vol->setText(QString::number(value));
+    g_vol1 = value;
 }
 
 void MainWindow::on_horizontalSlider_2_vol_valueChanged(int value)
 {
     ui->label_2_vol->setText(QString::number(value));
+    g_vol2 = value;
 }
 
 
 void MainWindow::on_horizontalSlider_3_vol_valueChanged(int value)
 {
     ui->label_3_vol->setText(QString::number(value));
+    g_vol3 = value;
 }
 
 
 void MainWindow::on_horizontalSlider_4_vol_valueChanged(int value)
 {
     ui->label_4_vol->setText(QString::number(value));
+    g_vol4 = value;
 }
 
 
 void MainWindow::on_horizontalSlider_5_vol_valueChanged(int value)
 {
     ui->label_5_vol->setText(QString::number(value));
+    g_vol5 = value;
 }
 
 void MainWindow::setup_comboBox_category(){
