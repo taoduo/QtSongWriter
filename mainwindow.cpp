@@ -65,9 +65,19 @@ void write_drums() {  // D R U M S
 }
 
 
+void chan_combo_box_init(QComboBox *combo_box) {
+    QStringList chan_list;
+    chan_list << "1" << "2" <<"3" << "4" <<"5" << "6" <<"7" << "8" <<"9" << "10" <<"11" << "12" <<"13" << "14" <<"15" << "16";
+    (*combo_box).addItems(chan_list);
+}
 
-
-
+void MainWindow::init_all_chan_combo_box() {
+    chan_combo_box_init(ui->comboBox_1_chan);
+    chan_combo_box_init(ui->comboBox_2_chan);
+    chan_combo_box_init(ui->comboBox_3_chan);
+    chan_combo_box_init(ui->comboBox_4_chan);
+    chan_combo_box_init(ui->comboBox_5_chan);
+}
 
 bool chooseMidiOutPort(RtMidiOut *rtmidi) {
   unsigned int nPorts = rtmidi->getPortCount();
@@ -106,8 +116,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 
     ui->setupUi(this);
-    setup_instru_name_list();
     setup_comboBox_category();
+    setup_instru_name_list();
+
+    init_all_chan_combo_box();
+
     try {
       midiout = new RtMidiOut();
     }
