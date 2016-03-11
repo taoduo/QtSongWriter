@@ -51,6 +51,16 @@ private slots:
 
     void on_comboBox_5_cat_currentIndexChanged(int index);
 
+    void on_comboBox_1_instru_currentIndexChanged(const QString &arg1);
+
+    void on_comboBox_2_instru_currentIndexChanged(const QString &arg1);
+
+    void on_comboBox_3_instru_currentIndexChanged(const QString &arg1);
+
+    void on_comboBox_4_instru_currentIndexChanged(const QString &arg1);
+
+    void on_comboBox_5_instru_currentIndexChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     void init_all_chan_combo_box();
