@@ -43,6 +43,14 @@ private slots:
     void setup_instru_name_list();
     void on_comboBox_1_cat_currentIndexChanged(int index);
 
+    void on_comboBox_2_cat_currentIndexChanged(int index);
+
+    void on_comboBox_3_cat_currentIndexChanged(int index);
+
+    void on_comboBox_4_cat_currentIndexChanged(int index);
+
+    void on_comboBox_5_cat_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
     void init_all_chan_combo_box();
