@@ -40,7 +40,7 @@ private slots:
 
     void setup_comboBox_category();
 
-    void setup_comboBox_instru();
+    void setup_instru_name_list();
 private:
     Ui::MainWindow *ui;
 };
