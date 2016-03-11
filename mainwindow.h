@@ -64,6 +64,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     void init_all_chan_combo_box();
+    void setup_trk_combox_box();
 };
 
 #endif // MAINWINDOW_H
