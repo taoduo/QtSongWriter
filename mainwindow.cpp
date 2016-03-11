@@ -199,6 +199,12 @@ void MainWindow::on_pushButton_play_clicked()
 
     //write_drums();
 
+    if(play_trk.size() == 0) {
+        QMessageBox msg;
+        msg.setText("You have not add any notes yet.");
+        msg.exec();
+        return;
+    }
     // sort the play_trk using CMidiPacket43::operator<
     std::sort(play_trk.begin(), play_trk.end());
     cur_pkt = play_trk.begin();
