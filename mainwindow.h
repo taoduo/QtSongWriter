@@ -41,6 +41,8 @@ private slots:
     void setup_comboBox_category();
 
     void setup_instru_name_list();
+    void on_comboBox_1_cat_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
 };

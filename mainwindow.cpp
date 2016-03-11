@@ -15,6 +15,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <iostream>
+#include <vector>
 #include <limits>
 #include <QDebug>
 
@@ -25,6 +26,8 @@ std::vector<CMidiPacket43>::iterator next_pkt;
 std::vector<std::string> cur_input_note_string;
 std::vector<std::string> track_1_notes;
 
+std::vector<QStringList> g_all_lists;
+QStringList g_none_list;
 QStringList g_piano_list;
 QStringList g_chroma_list;
 QStringList g_organ_list;
@@ -40,7 +43,6 @@ QStringList g_synth_pad_list;
 QStringList g_synth_effect_list;
 QStringList g_percussive_list;
 QStringList g_ethnic_list;
-QStringList g_percussive_effect_list;
 QStringList g_effects_list;
 
 void write_track_1() {  // P I A N O
@@ -104,8 +106,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 
     ui->setupUi(this);
-    setup_comboBox_category();
     setup_instru_name_list();
+    setup_comboBox_category();
     try {
       midiout = new RtMidiOut();
     }
@@ -273,7 +275,7 @@ void MainWindow::setup_comboBox_category(){
 
 
 void MainWindow::setup_instru_name_list() {
-
+g_none_list<<"<None>";
 
   g_piano_list<<"<None>"
           <<"1 Acoustic Grand Piano"
@@ -420,6 +422,27 @@ void MainWindow::setup_instru_name_list() {
                     <<"126 Helicopter"
                     <<"127 Applause"
                     <<"128 Gunshot";
+    g_all_lists.push_back(g_none_list);
+    g_all_lists.push_back(g_piano_list);
+            g_all_lists.push_back(g_chroma_list);
+            g_all_lists.push_back(g_organ_list);
+            g_all_lists.push_back(g_guitar_list);
+            g_all_lists.push_back(g_bass_list);
+            g_all_lists.push_back(g_strings_list);
+            g_all_lists.push_back(g_ensemble_list);
+            g_all_lists.push_back(g_brass_list);
+            g_all_lists.push_back(g_reed_list);
+            g_all_lists.push_back(g_pipe_list);
+            g_all_lists.push_back(g_synth_lead_list);
+            g_all_lists.push_back(g_synth_pad_list);
+            g_all_lists.push_back(g_synth_effect_list);
+            g_all_lists.push_back(g_ethnic_list);
+            g_all_lists.push_back(g_percussive_list);
+            g_all_lists.push_back(g_effects_list);
+}
 
-    ui->comboBox_1_instru->addItems(g_piano_list);
+void MainWindow::on_comboBox_1_cat_currentIndexChanged(int index)
+{
+    ui->comboBox_1_instru->clear();
+    ui->comboBox_1_instru->addItems(g_all_lists.at(index));
 }
