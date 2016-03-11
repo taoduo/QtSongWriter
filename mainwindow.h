@@ -43,6 +43,7 @@ private slots:
     void setup_instru_name_list();
 private:
     Ui::MainWindow *ui;
+    void init_all_chan_combo_box();
 };
 
 #endif // MAINWINDOW_H
