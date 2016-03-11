@@ -45,6 +45,7 @@ QStringList g_percussive_list;
 QStringList g_ethnic_list;
 QStringList g_effects_list;
 
+<<<<<<< HEAD
 int g_tempo = 60;
 int g_vol1 = 100;
 int g_vol2 = 100;
@@ -52,6 +53,13 @@ int g_vol3 = 100;
 int g_vol4 = 100;
 int g_vol5 = 100;
 int g_currentTrack = 1;
+=======
+int g_track_1_patch;
+int g_track_2_patch;
+int g_track_3_patch;
+int g_track_4_patch;
+int g_track_5_patch;
+>>>>>>> 91a5a00eac3f523af5e5d0da6c435687641a99ff
 
 void write_track_1() {  // P I A N O
   uint16_t start_note = 48;
@@ -504,4 +512,29 @@ void MainWindow::on_comboBox_5_cat_currentIndexChanged(int index)
 {
     ui->comboBox_5_instru->clear();
     ui->comboBox_5_instru->addItems(g_all_lists.at(index));
+}
+
+void MainWindow::on_comboBox_1_instru_currentIndexChanged(const QString &arg1)
+{
+    g_track_1_patch = arg1.split(QRegExp("\\s"))[0].toInt();
+}
+
+void MainWindow::on_comboBox_2_instru_currentIndexChanged(const QString &arg1)
+{
+    g_track_2_patch = arg1.split(QRegExp("\\s"))[0].toInt();
+}
+
+void MainWindow::on_comboBox_3_instru_currentIndexChanged(const QString &arg1)
+{
+    g_track_3_patch = arg1.split(QRegExp("\\s"))[0].toInt();
+}
+
+void MainWindow::on_comboBox_4_instru_currentIndexChanged(const QString &arg1)
+{
+    g_track_4_patch = arg1.split(QRegExp("\\s"))[0].toInt();
+}
+
+void MainWindow::on_comboBox_5_instru_currentIndexChanged(const QString &arg1)
+{
+    g_track_5_patch = arg1.split(QRegExp("\\s"))[0].toInt();
 }
