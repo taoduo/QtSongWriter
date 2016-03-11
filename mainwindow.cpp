@@ -25,6 +25,19 @@ std::vector<CMidiPacket43>::iterator next_pkt;
 std::vector<std::string> cur_input_note_string;
 std::vector<std::string> track_1_notes;
 
+QStringList g_piano_list;
+QStringList g_chroma_list;
+QStringList g_organ_list;
+QStringList g_guitar_list;
+QStringList g_bass_list;
+QStringList g_strings_list;
+QStringList g_ensemble_list;
+QStringList g_brass_list;
+QStringList g_reed_list;
+QStringList g_pipe_list;
+QStringList g_synth_lead_list;
+QStringList g_synth_pad_list;
+QStringList g_synth_effect_list;
 
 void write_track_1() {  // P I A N O
   uint16_t start_note = 48;
@@ -88,7 +101,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
     setup_comboBox_category();
-    setup_comboBox_instru();
+    setup_instru_name_list();
     try {
       midiout = new RtMidiOut();
     }
@@ -255,10 +268,11 @@ void MainWindow::setup_comboBox_category(){
 }
 
 
-void MainWindow::setup_comboBox_instru() {
+void MainWindow::setup_instru_name_list() {
 
-  QStringList pianoList;
-  pianoList<<"1 Acoustic Grand Piano"
+
+  g_piano_list<<"<None>"
+          <<"1 Acoustic Grand Piano"
           <<"2 Bright Acoustic Piano"
           <<"3 Electric Grand Piano"
           <<"4 Honky-tonk Piano"
@@ -266,6 +280,25 @@ void MainWindow::setup_comboBox_instru() {
           <<"6 Electric Piano 2"
           <<"7 Harpsichord"
           <<"8 Clavinet";
-
-    ui->comboBox_1_instru->addItems(pianoList);
+  g_chroma_list<<"<None>"
+                  <<"9 Celesta"
+                  <<"10 Glockenspiel"
+                  <<"11 Music Box"
+                  <<"12 Vibraphone"
+                  <<"13 Marimba"
+                  <<"14 Xylophone"
+                  <<"15 Tubular Bells"
+                  <<"16 Dulcimer";
+  g_organ_list<<"<None>";
+  /**g_guitar_list;
+  g_bass_list;
+  g_strings_list;
+  g_ensemble_list;
+  g_brass_list;
+  g_reed_list;
+  g_pipe_list;
+  g_synth_lead_list;
+  g_synth_pad_list;
+  g_synth_effect_list;**/
+    ui->comboBox_1_instru->addItems(g_piano_list);
 }
