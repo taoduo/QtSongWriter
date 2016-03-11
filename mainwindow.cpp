@@ -46,12 +46,12 @@ QStringList g_ethnic_list;
 QStringList g_effects_list;
 
 int g_tempo = 60;
-int g_vol1 = 100;
-int g_vol2 = 100;
-int g_vol3 = 100;
-int g_vol4 = 100;
-int g_vol5 = 100;
-int g_currentTrack = 1;
+int g_vol_1 = 100;
+int g_vol_2 = 100;
+int g_vol_3 = 100;
+int g_vol_4 = 100;
+int g_vol_5 = 100;
+int g_current_track = 1;
 
 int g_track_1_patch;
 int g_track_2_patch;
@@ -66,7 +66,9 @@ void write_track_1() {  // P I A N O
   uint16_t vol = 110;
   uint16_t pan = 80;  // pan right
   CTrack_1 trk_1(1);
-  trk_1.write_track(cur_input_note_string, chan, g_track_1_patch, vol, pan);
+
+  trk_1.write_track(cur_input_note_string, chan, g_track_1_patch, g_vol_1, pan);
+
   std::copy(trk_1.m_trk.begin(), trk_1.m_trk.end(),
             std::back_inserter(play_trk));
 }
@@ -141,6 +143,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setup_instru_name_list();
     setup_comboBox_category();
+    setup_trk_combox_box();
     init_all_chan_combo_box();
 
     try {
@@ -258,34 +261,34 @@ void MainWindow::on_horizontalSlider_tempo_valueChanged(int value)
 void MainWindow::on_horizontalSlider_1_vol_valueChanged(int value)
 {
     ui->label_1_vol->setText(QString::number(value));
-    g_vol1 = value;
+    g_vol_1 = value;
 }
 
 void MainWindow::on_horizontalSlider_2_vol_valueChanged(int value)
 {
     ui->label_2_vol->setText(QString::number(value));
-    g_vol2 = value;
+    g_vol_2 = value;
 }
 
 
 void MainWindow::on_horizontalSlider_3_vol_valueChanged(int value)
 {
     ui->label_3_vol->setText(QString::number(value));
-    g_vol3 = value;
+    g_vol_3 = value;
 }
 
 
 void MainWindow::on_horizontalSlider_4_vol_valueChanged(int value)
 {
     ui->label_4_vol->setText(QString::number(value));
-    g_vol4 = value;
+    g_vol_4 = value;
 }
 
 
 void MainWindow::on_horizontalSlider_5_vol_valueChanged(int value)
 {
     ui->label_5_vol->setText(QString::number(value));
-    g_vol5 = value;
+    g_vol_5 = value;
 }
 
 void MainWindow::setup_comboBox_category(){
@@ -535,4 +538,9 @@ void MainWindow::on_comboBox_4_instru_currentIndexChanged(const QString &arg1)
 void MainWindow::on_comboBox_5_instru_currentIndexChanged(const QString &arg1)
 {
     g_track_5_patch = arg1.split(QRegExp("\\s"))[0].toInt();
+}
+
+void MainWindow::on_comboBox_input_track_currentIndexChanged(int index)
+{
+    g_current_track = index + 1;
 }
