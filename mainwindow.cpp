@@ -64,7 +64,7 @@ int g_track_3_patch;
 int g_track_4_patch;
 int g_track_5_patch;
 
-int g_trk_chan[5];
+int g_trk_chan[5] = {1,1,1,1,1};
 
 bool g_stop = true;
 void write_track_1() {
@@ -409,26 +409,37 @@ void MainWindow::on_horizontalSlider_tempo_valueChanged(int value) {
 void MainWindow::on_horizontalSlider_1_vol_valueChanged(int value) {
   ui->label_1_vol->setText(QString::number(value));
   g_vol_1 = value;
+  CMidiPacket43 vol_ctrl(0, 0xB0 + g_trk_chan[0], 7, g_vol_1);
+  std::cout << "vol control: " << vol_ctrl;
+  sendCMidiPacket(vol_ctrl);
 }
 
 void MainWindow::on_horizontalSlider_2_vol_valueChanged(int value) {
   ui->label_2_vol->setText(QString::number(value));
   g_vol_2 = value;
+  CMidiPacket43 vol_ctrl(0, 0xB0 + g_trk_chan[1], 7, g_vol_2);
+  sendCMidiPacket(vol_ctrl);
 }
 
 void MainWindow::on_horizontalSlider_3_vol_valueChanged(int value) {
   ui->label_3_vol->setText(QString::number(value));
   g_vol_3 = value;
+  CMidiPacket43 vol_ctrl(0, 0xB0 + g_trk_chan[2], 7, g_vol_3);
+  sendCMidiPacket(vol_ctrl);
 }
 
 void MainWindow::on_horizontalSlider_4_vol_valueChanged(int value) {
   ui->label_4_vol->setText(QString::number(value));
   g_vol_4 = value;
+  CMidiPacket43 vol_ctrl(0, 0xB0 + g_trk_chan[3], 7, g_vol_4);
+  sendCMidiPacket(vol_ctrl);
 }
 
 void MainWindow::on_horizontalSlider_5_vol_valueChanged(int value) {
   ui->label_5_vol->setText(QString::number(value));
   g_vol_5 = value;
+  CMidiPacket43 vol_ctrl(0, 0xB0 + g_trk_chan[4], 7, g_vol_5);
+  sendCMidiPacket(vol_ctrl);
 }
 
 void MainWindow::setup_comboBox_category() {
