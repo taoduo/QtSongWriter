@@ -63,6 +63,18 @@ private slots:
 
     void on_comboBox_input_track_currentIndexChanged(int index);
 
+    void on_pushButton_stop_clicked();
+
+    void on_comboBox_1_chan_currentIndexChanged(int index);
+
+    void on_comboBox_2_chan_currentIndexChanged(int index);
+
+    void on_comboBox_3_chan_currentIndexChanged(int index);
+
+    void on_comboBox_4_chan_currentIndexChanged(int index);
+
+    void on_comboBox_5_chan_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
     void init_all_chan_combo_box();

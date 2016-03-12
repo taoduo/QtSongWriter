@@ -59,11 +59,14 @@ int g_track_3_patch;
 int g_track_4_patch;
 int g_track_5_patch;
 
+int g_trk_chan[5];
+
+bool g_stop = true;
 void write_track_1() {  // P I A N O
-  uint16_t start_note = 48;
+  //uint16_t start_note = 48;
   uint16_t chan = 1;
-  uint16_t patch = 0;  // piano
-  uint16_t vol = 110;
+  //uint16_t patch = 0;  // piano
+  //uint16_t vol = 110;
   uint16_t pan = 80;  // pan right
   CTrack_1 trk_1(1);
 
@@ -73,7 +76,7 @@ void write_track_1() {  // P I A N O
             std::back_inserter(play_trk));
 }
 void write_drums() {  // D R U M S
-  uint16_t vol = 100;
+  //uint16_t vol = 100;
   CBluesDrumTrack drum_trk(1);
   drum_trk.write_track(100, 36, "11111111");
   std::copy(drum_trk.m_trk.begin(), drum_trk.m_trk.end(),
@@ -177,8 +180,9 @@ void MainWindow::txTimerAction() {
   next_pkt++;
   QTimer *timer = qobject_cast<QTimer *>(sender());
 
-  if (cur_pkt == play_trk.end()-1) {
+  if (cur_pkt == play_trk.end()-1 || g_stop) {
     timer->stop();
+    g_stop = true;
     return;
   }
   auto delay =
@@ -214,6 +218,7 @@ void MainWindow::on_pushButton_play_clicked()
     }
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(txTimerAction()));
+    g_stop = false;
     timer->start();
 }
 
@@ -549,4 +554,64 @@ void MainWindow::on_comboBox_5_instru_currentIndexChanged(const QString &arg1)
 void MainWindow::on_comboBox_input_track_currentIndexChanged(int index)
 {
     g_current_track = index + 1;
+}
+
+void stop_one_track(int trk_num) {
+    if(trk_num > 5 || trk_num < 1) {
+        qDebug() << "track number to stop is unknown";
+    }
+    int chan = g_trk_chan[trk_num - 1];
+    for (int i = 0; i < 127; i++) {
+      CMidiPacket43 note_off_1(0, 0x90 + chan, i, 0);
+      CMidiPacket43 note_off_2(0, 0x90 + chan, i, 0);
+      CMidiPacket43 note_off_3(0, 0x90 + chan, i, 0);
+      CMidiPacket43 note_off_4(0, 0x90 + chan, i, 0);
+      CMidiPacket43 note_off_11(0, 0x80 + chan, i, 0);
+      CMidiPacket43 note_off_21(0, 0x80 + chan, i, 0);
+      CMidiPacket43 note_off_31(0, 0x80 + chan, i, 0);
+      CMidiPacket43 note_off_41(0, 0x80 + chan, i, 0);
+      sendCMidiPacket(note_off_1);
+      sendCMidiPacket(note_off_2);
+      sendCMidiPacket(note_off_3);
+      sendCMidiPacket(note_off_4);
+      sendCMidiPacket(note_off_11);
+      sendCMidiPacket(note_off_21);
+      sendCMidiPacket(note_off_31);
+      sendCMidiPacket(note_off_41);
+    }
+}
+
+void MainWindow::on_pushButton_stop_clicked()
+{
+   stop_one_track(1);
+   stop_one_track(2);
+   stop_one_track(3);
+   stop_one_track(4);
+   stop_one_track(5);
+   g_stop = true;
+}
+
+void MainWindow::on_comboBox_1_chan_currentIndexChanged(int index)
+{
+    g_trk_chan[0] = index;
+}
+
+void MainWindow::on_comboBox_2_chan_currentIndexChanged(int index)
+{
+    g_trk_chan[1] = index;
+}
+
+void MainWindow::on_comboBox_3_chan_currentIndexChanged(int index)
+{
+    g_trk_chan[2] = index;
+}
+
+void MainWindow::on_comboBox_4_chan_currentIndexChanged(int index)
+{
+    g_trk_chan[3] = index;
+}
+
+void MainWindow::on_comboBox_5_chan_currentIndexChanged(int index)
+{
+    g_trk_chan[4] = index;
 }
