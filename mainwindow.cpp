@@ -237,6 +237,18 @@ void MainWindow::on_pushButton_play_clicked()
     if (ui->play_1->checkState()){
     write_track_1();
     }
+    if (ui->play_2->checkState()){
+    write_track_2();
+    }
+    if (ui->play_3->checkState()){
+    write_track_3();
+    }
+    if (ui->play_4->checkState()){
+    write_track_4();
+    }
+    if (ui->play_5->checkState()){
+    write_track_5();
+    }
     if(play_trk.size() == 0) {
         QMessageBox msg;
         msg.setText("You have not add any notes yet.");
@@ -275,7 +287,14 @@ void MainWindow::on_pushButton_Enter_clicked()
     cur_input_note_string.push_back(ui->lineEdit_13->text().toStdString());
     cur_input_note_string.push_back(ui->lineEdit_14->text().toStdString());
     cur_input_note_string.push_back(ui->lineEdit_15->text().toStdString());
-    track_1_notes.insert(track_1_notes.end(), cur_input_note_string.begin(), cur_input_note_string.end());
+    switch(g_current_track) {
+    case 1: track_1_notes.insert(track_1_notes.end(), cur_input_note_string.begin(), cur_input_note_string.end());break;
+    case 2: track_2_notes.insert(track_2_notes.end(), cur_input_note_string.begin(), cur_input_note_string.end());break;
+    case 3: track_3_notes.insert(track_3_notes.end(), cur_input_note_string.begin(), cur_input_note_string.end());break;
+    case 4: track_4_notes.insert(track_4_notes.end(), cur_input_note_string.begin(), cur_input_note_string.end());break;
+    case 5: track_5_notes.insert(track_5_notes.end(), cur_input_note_string.begin(), cur_input_note_string.end());break;
+    }
+
 }
 
 
