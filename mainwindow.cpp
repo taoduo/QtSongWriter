@@ -232,7 +232,7 @@ void MainWindow::txTimerAction() {
     g_stop = true;
     return;
   }
-  auto delay = ((*next_pkt).get_timestamp() - (*cur_pkt).get_timestamp());
+  auto delay = ((*next_pkt).get_timestamp() - (*cur_pkt).get_timestamp()) * (60 / g_tempo);
   timer->start(delay);
   if (next_pkt != play_trk.end()) {
     cur_pkt++;
