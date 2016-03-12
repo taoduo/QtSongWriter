@@ -25,6 +25,10 @@ std::vector<CMidiPacket43>::iterator cur_pkt;
 std::vector<CMidiPacket43>::iterator next_pkt;
 std::vector<std::string> cur_input_note_string;
 std::vector<std::string> track_1_notes;
+std::vector<std::string> track_2_notes;
+std::vector<std::string> track_3_notes;
+std::vector<std::string> track_4_notes;
+std::vector<std::string> track_5_notes;
 
 std::vector<QStringList> g_all_lists;
 QStringList g_none_list;
@@ -60,25 +64,17 @@ int g_track_4_patch;
 int g_track_5_patch;
 
 void write_track_1() {  // P I A N O
-  uint16_t start_note = 48;
+
   uint16_t chan = 1;
-  uint16_t patch = 0;  // piano
-  uint16_t vol = 110;
   uint16_t pan = 80;  // pan right
   CTrack_1 trk_1(1);
 
-  trk_1.write_track(cur_input_note_string, chan, g_track_1_patch, g_vol_1, pan);
+  trk_1.write_track(track_1_notes, chan, g_track_1_patch, g_vol_1, pan);
 
   std::copy(trk_1.m_trk.begin(), trk_1.m_trk.end(),
             std::back_inserter(play_trk));
 }
-void write_drums() {  // D R U M S
-  uint16_t vol = 100;
-  CBluesDrumTrack drum_trk(1);
-  drum_trk.write_track(100, 36, "11111111");
-  std::copy(drum_trk.m_trk.begin(), drum_trk.m_trk.end(),
-            std::back_inserter(play_trk));
-}
+
 
 
 void chan_combo_box_init(QComboBox *combo_box) {
@@ -196,9 +192,10 @@ void MainWindow::on_pushButton_play_clicked()
     //CMidiPacket43 mp2{5000,0x80,60,0};
     //sendCMidiPacket(mp1);
     //sendCMidiPacket(mp2);
-
-    //write_drums();
-
+    play_trk.clear();
+    if (ui->play_1->checkState()){
+    write_track_1();
+    }
     if(play_trk.size() == 0) {
         QMessageBox msg;
         msg.setText("You have not add any notes yet.");
@@ -219,6 +216,7 @@ void MainWindow::on_pushButton_play_clicked()
 
 void MainWindow::on_pushButton_Enter_clicked()
 {
+    cur_input_note_string.clear();
     cur_input_note_string.push_back(ui->lineEdit_0->text().toStdString());
     cur_input_note_string.push_back(ui->lineEdit_1->text().toStdString());
     cur_input_note_string.push_back(ui->lineEdit_2->text().toStdString());
@@ -235,7 +233,7 @@ void MainWindow::on_pushButton_Enter_clicked()
     cur_input_note_string.push_back(ui->lineEdit_13->text().toStdString());
     cur_input_note_string.push_back(ui->lineEdit_14->text().toStdString());
     cur_input_note_string.push_back(ui->lineEdit_15->text().toStdString());
-    write_track_1();
+    track_1_notes.insert(track_1_notes.end(), cur_input_note_string.begin(), cur_input_note_string.end());
 }
 
 
@@ -549,4 +547,25 @@ void MainWindow::on_comboBox_5_instru_currentIndexChanged(const QString &arg1)
 void MainWindow::on_comboBox_input_track_currentIndexChanged(int index)
 {
     g_current_track = index + 1;
+}
+
+
+void MainWindow::on_clear_button_clicked()
+{
+    if (ui->select_1->checkState()){
+        track_1_notes.clear();
+    }
+    if (ui->select_2->checkState()){
+        track_2_notes.clear();
+    }
+    if (ui->select_3->checkState()){
+        track_3_notes.clear();
+    }
+    if (ui->select_4->checkState()){
+        track_4_notes.clear();
+    }
+    if (ui->select_5->checkState()){
+        track_5_notes.clear();
+    }
+
 }
