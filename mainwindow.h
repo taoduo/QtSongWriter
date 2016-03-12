@@ -75,6 +75,8 @@ private slots:
 
     void on_comboBox_5_chan_currentIndexChanged(int index);
 
+    void on_clear_button_clicked();
+
 private:
     Ui::MainWindow *ui;
     void init_all_chan_combo_box();
