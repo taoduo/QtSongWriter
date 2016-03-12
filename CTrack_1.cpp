@@ -18,7 +18,7 @@
 #include "bluesUtils.h"
 #endif
 
-struct ChordTm {
+/*struct ChordTm {
   uint32_t note1;
   uint32_t note2;
   uint32_t note3;
@@ -28,7 +28,7 @@ struct ChordTm {
 
 const std::vector<ChordTm> one_meas_chord_vec = {
     {7, 10, 12, 16, 1667}, {7, 10, 12, 16, 2000}, {4, 7, 10, 12, 2667}};
-const std::vector<uint32_t> dur_vec = {667, 1000, 1667, 2000, 2667};
+const std::vector<uint32_t> dur_vec = {667, 1000, 1667, 2000, 2667};*/
 
 // This is the implementation of the base class pure virtual function
 void CTrack_1::write_track() {}
@@ -49,19 +49,17 @@ void CTrack_1::write_one_measure(int meas_num, std::vector<std::string> notes,
   CMidiPacket43 mp;
   int playing_note;
   uint32_t meas_tm = (meas_num - 1) * 1000;
-  for (auto i = 0; i < notes.size(); i++) {
-    if (notes.at(i).compare("-") == 0 && i != notes.size() - 1) {
-
-    } else {
-      if (i != 0&&(notes.at(i).compare("-") !=0)){
+  for (auto i = 0; i < (int)notes.size(); i++) {
+    if (notes.at(i).compare("-") != 0 || i == (int)notes.size() - 1) {
+      if (i != 0 && (notes.at(i).compare("-") != 0)) {
         note_off(meas_tm + i * 62.5 - 12.5, chan, playing_note);
       }
-      if (i != notes.size() - 1) {
-          int note = std::stoi(notes.at(i));
-          note_on(meas_tm + i * 62.5, chan, note, 100);
-          playing_note = note;
+      if (i != (int)notes.size() - 1) {
+        int note = std::stoi(notes.at(i));
+        note_on(meas_tm + i * 62.5, chan, note, 100);
+        playing_note = note;
       } else {
-          note_off(meas_tm + i * 62.5 - 12.5, chan, playing_note);
+        note_off(meas_tm + i * 62.5 - 12.5, chan, playing_note);
       }
     }
   }

@@ -270,9 +270,9 @@ void MainWindow::on_pushButton_play_clicked() {
   std::sort(play_trk.begin(), play_trk.end());
   cur_pkt = play_trk.begin();
   next_pkt = play_trk.begin();
-  for (CMidiPacket43 mp : play_trk) {
+  /*for (CMidiPacket43 mp : play_trk) {
     std::cout << mp;
-  }
+  }*/
   QTimer *timer = new QTimer(this);
   connect(timer, SIGNAL(timeout()), this, SLOT(txTimerAction()));
   g_stop = false;
@@ -410,7 +410,7 @@ void MainWindow::on_horizontalSlider_1_vol_valueChanged(int value) {
   ui->label_1_vol->setText(QString::number(value));
   g_vol_1 = value;
   CMidiPacket43 vol_ctrl(0, 0xB0 + g_trk_chan[0], 7, g_vol_1);
-  std::cout << "vol control: " << vol_ctrl;
+  //std::cout << "vol control: " << vol_ctrl;
   sendCMidiPacket(vol_ctrl);
 }
 
