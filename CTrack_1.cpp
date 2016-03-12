@@ -51,20 +51,17 @@ void CTrack_1::write_one_measure(int meas_num, std::vector<std::string> notes,
   uint32_t meas_tm = (meas_num - 1) * 1000;
   for (auto i = 0; i < notes.size(); i++) {
     if (notes.at(i).compare("-") == 0 && i != notes.size() - 1) {
-      /*if (notes.at(i + 1).compare("-") == 1) {
-        note_off(meas_tm + i * 62.5 + 50, chan, playing_note);
-      }*/
+
     } else {
       if (i != 0&&(notes.at(i).compare("-") !=0)){
         note_off(meas_tm + i * 62.5 - 12.5, chan, playing_note);
       }
-      /*if (notes.at(i + 1).compare("-") ==1) {
-        note_off(meas_tm + i * 62.5 + 50, chan, note);
-      }*/
       if (i != notes.size() - 1) {
           int note = std::stoi(notes.at(i));
           note_on(meas_tm + i * 62.5, chan, note, 100);
           playing_note = note;
+      } else {
+          note_off(meas_tm + i * 62.5 - 12.5, chan, playing_note);
       }
     }
   }
