@@ -4,6 +4,7 @@
 #ifndef CTRACK_1_H
 #include "CTrack_1.h"
 #endif
+
 #ifndef FUNCTOR_H_
 #include "functorTests.h"
 #endif
@@ -66,17 +67,56 @@ int g_track_5_patch;
 int g_trk_chan[5];
 
 bool g_stop = true;
-void write_track_1() {  // P I A N O
-  uint16_t chan = 1;
+void write_track_1() {
+
   uint16_t pan = 80;  // pan right
   CTrack_1 trk_1(1);
 
-  trk_1.write_track(track_1_notes, chan, g_track_1_patch, g_vol_1, pan);
+  trk_1.write_track(track_1_notes, g_trk_chan[0], g_track_1_patch, g_vol_1, pan);
 
   std::copy(trk_1.m_trk.begin(), trk_1.m_trk.end(),
             std::back_inserter(play_trk));
 }
+void write_track_2() {
 
+  uint16_t pan = 80;  // pan right
+  CTrack_1 trk_2(1);
+
+  trk_2.write_track(track_2_notes, g_trk_chan[1], g_track_2_patch, g_vol_2, pan);
+
+  std::copy(trk_2.m_trk.begin(), trk_2.m_trk.end(),
+            std::back_inserter(play_trk));
+}
+void write_track_3() {
+
+  uint16_t pan = 80;  // pan right
+  CTrack_1 trk_3(1);
+
+  trk_3.write_track(track_3_notes, g_trk_chan[2], g_track_3_patch, g_vol_3, pan);
+
+  std::copy(trk_3.m_trk.begin(), trk_3.m_trk.end(),
+            std::back_inserter(play_trk));
+}
+void write_track_4() {
+
+  uint16_t pan = 80;  // pan right
+  CTrack_1 trk_4(1);
+
+  trk_4.write_track(track_4_notes, g_trk_chan[3], g_track_4_patch, g_vol_4, pan);
+
+  std::copy(trk_4.m_trk.begin(), trk_4.m_trk.end(),
+            std::back_inserter(play_trk));
+}
+void write_track_5() {
+
+  uint16_t pan = 80;  // pan right
+  CTrack_1 trk_5(1);
+
+  trk_5.write_track(track_5_notes, g_trk_chan[4], g_track_5_patch, g_vol_5, pan);
+
+  std::copy(trk_5.m_trk.begin(), trk_5.m_trk.end(),
+            std::back_inserter(play_trk));
+}
 void chan_combo_box_init(QComboBox *combo_box) {
     QStringList chan_list;
     chan_list << "1" << "2" <<"3" << "4" <<"5" << "6" <<"7" << "8" <<"9" << "10" <<"11" << "12" <<"13" << "14" <<"15" << "16";
