@@ -35,27 +35,37 @@ void CTrack_1::write_track() {}
 
 // This code used to be in CMidiTrack but was moved here
 void CTrack_1::write_track(std::vector<std::string> notes, uint16_t chan,
-                                   uint16_t patch, uint16_t vol, uint16_t pan) {
-    m_trk.clear();
-    patch_change(0, chan, patch);
-    control_volume(0, chan, vol);
-    control_pan(0, chan, pan);
+                           uint16_t patch, uint16_t vol, uint16_t pan) {
+  m_trk.clear();
+  patch_change(0, chan, patch);
+  control_volume(0, chan, vol);
+  control_pan(0, chan, pan);
 
-
-
-    write_one_measure(1, notes, chan);
-
+  write_one_measure(1, notes, chan);
 }
 
-
 void CTrack_1::write_one_measure(int meas_num, std::vector<std::string> notes,
-                                         uint16_t chan) {
-    CMidiPacket43 mp;
-      uint32_t meas_tm = (meas_num - 1) * 1000;
-      for (int i = 0; i < notes.size(); i++) {
-          int note = std::stoi(notes.at(i));
-        note_on(meas_tm + i*62.5, chan, note, 100);
-        note_off(meas_tm + i*62.5 + 50, chan, note);
-
+                                 uint16_t chan) {
+  CMidiPacket43 mp;
+  int playing_note;
+  uint32_t meas_tm = (meas_num - 1) * 1000;
+  for (auto i = 0; i < notes.size(); i++) {
+    if (notes.at(i).compare("-") == 0 && i != notes.size() - 1) {
+      /*if (notes.at(i + 1).compare("-") == 1) {
+        note_off(meas_tm + i * 62.5 + 50, chan, playing_note);
+      }*/
+    } else {
+      if (i != 0&&(notes.at(i).compare("-") !=0)){
+        note_off(meas_tm + i * 62.5 - 12.5, chan, playing_note);
       }
+      /*if (notes.at(i + 1).compare("-") ==1) {
+        note_off(meas_tm + i * 62.5 + 50, chan, note);
+      }*/
+      if (i != notes.size() - 1) {
+          int note = std::stoi(notes.at(i));
+          note_on(meas_tm + i * 62.5, chan, note, 100);
+          playing_note = note;
+      }
+    }
+  }
 }
