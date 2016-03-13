@@ -5,9 +5,6 @@
 #include "CTrack_1.h"
 #endif
 
-#ifndef FUNCTOR_H_
-#include "functorTests.h"
-#endif
 #include <cstdlib>
 #include <numeric>
 #include <QTimer>
@@ -241,7 +238,6 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow() { delete ui; }
 void MainWindow::txTimerAction() {
   int chan = (*cur_pkt).get_status() % 16;
-  qDebug() << chan;
   int trk_num = 0; // 0 ~ 4
   for(int i = 0; i < 5; i++) {
       if(g_trk_chan[i] == chan) {
@@ -270,10 +266,6 @@ void MainWindow::txTimerAction() {
 }
 
 void MainWindow::on_pushButton_play_clicked() {
-  // CMidiPacket43 mp1{0,0x90,60,100};
-  // CMidiPacket43 mp2{5000,0x80,60,0};
-  // sendCMidiPacket(mp1);
-  // sendCMidiPacket(mp2);
   play_trk.clear();
     write_track_1();
     write_track_2();
@@ -290,9 +282,6 @@ void MainWindow::on_pushButton_play_clicked() {
   std::sort(play_trk.begin(), play_trk.end());
   cur_pkt = play_trk.begin();
   next_pkt = play_trk.begin();
-  /*for (CMidiPacket43 mp : play_trk) {
-    std::cout << mp;
-  }*/
   QTimer *timer = new QTimer(this);
   connect(timer, SIGNAL(timeout()), this, SLOT(txTimerAction()));
   g_stop = false;
@@ -430,7 +419,6 @@ void MainWindow::on_horizontalSlider_1_vol_valueChanged(int value) {
   ui->label_1_vol->setText(QString::number(value));
   g_vol_1 = value;
   CMidiPacket43 vol_ctrl(0, 0xB0 + g_trk_chan[0], 7, g_vol_1);
-  //std::cout << "vol control: " << vol_ctrl;
   sendCMidiPacket(vol_ctrl);
 }
 

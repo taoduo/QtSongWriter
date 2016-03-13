@@ -18,7 +18,6 @@ SOURCES += main.cpp\
     CBluesDrumTrack.cpp \
     CMidiPacket43.cpp \
     CMidiTrack.cpp \
-    functorTests.cpp \
     RtMidi.cpp \
     CTrack_1.cpp \
     displaywindow.cpp \
@@ -29,7 +28,6 @@ HEADERS  += mainwindow.h \
     CBluesTrack.h \
     CMidiPacket43.h \
     CMidiTrack.h \
-    functorTests.h \
     RtMidi.h \
     CTrack_1.h \
     displaywindow.h \
