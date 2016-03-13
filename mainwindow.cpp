@@ -1,6 +1,3 @@
-#ifndef CBLUESDRUMTRACK_H
-#include "CBluesDrumTrack.h"
-#endif
 #ifndef CTRACK_1_H
 #include "CTrack_1.h"
 #endif

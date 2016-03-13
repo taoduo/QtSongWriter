@@ -15,7 +15,6 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     bluesUtils.cpp \
-    CBluesDrumTrack.cpp \
     CMidiPacket43.cpp \
     CMidiTrack.cpp \
     RtMidi.cpp \
@@ -24,7 +23,6 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     bluesUtils.h \
-    CBluesDrumTrack.h \
     CBluesTrack.h \
     CMidiPacket43.h \
     CMidiTrack.h \
@@ -35,7 +33,6 @@ HEADERS  += mainwindow.h \
 
 DISTFILES += \
     final_project.pro.user \
-    drums.txt \
     readme.md
 CONFIG += c++11
 macx {
