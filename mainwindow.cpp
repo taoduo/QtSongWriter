@@ -755,3 +755,10 @@ void MainWindow::on_clear_button_clicked() {
     track_5_notes.clear();
   }
 }
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    DisplayWindow display_window;
+    display_window.setModal(true);
+    display_window.exec();
+}

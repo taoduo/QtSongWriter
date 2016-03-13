@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     CMidiTrack.cpp \
     functorTests.cpp \
     RtMidi.cpp \
-    CTrack_1.cpp
+    CTrack_1.cpp \
+    displaywindow.cpp \
 
 HEADERS  += mainwindow.h \
     bluesUtils.h \
@@ -30,7 +31,8 @@ HEADERS  += mainwindow.h \
     CMidiTrack.h \
     functorTests.h \
     RtMidi.h \
-    CTrack_1.h
+    CTrack_1.h \
+    displaywindow.h \
 
 
 DISTFILES += \
@@ -49,4 +51,5 @@ macx {
     QMAKE_MAC_SDK = macosx10.10
 }
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    displaywindow.ui

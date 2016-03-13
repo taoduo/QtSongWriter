@@ -7,7 +7,7 @@
 #endif
 #include <QTimer>
 #include "RtMidi.h"
-
+#include "displaywindow.h"
 namespace Ui {
 class MainWindow;
 }
@@ -76,6 +76,8 @@ private slots:
     void on_comboBox_5_chan_currentIndexChanged(int index);
 
     void on_clear_button_clicked();
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::MainWindow *ui;
