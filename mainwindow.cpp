@@ -198,6 +198,24 @@ MainWindow::MainWindow(QWidget *parent)
   setup_comboBox_category();
   setup_trk_combox_box();
   init_all_chan_combo_box();
+  QRegExp reg("[0-9]$|[1-9][0-9]$|11[0-9]$|12[0-7]$|-");
+  QValidator *validator = new QRegExpValidator(reg, this);
+  ui->lineEdit_0->setValidator(validator);
+  ui->lineEdit_1->setValidator(validator);
+  ui->lineEdit_2->setValidator(validator);
+  ui->lineEdit_3->setValidator(validator);
+  ui->lineEdit_4->setValidator(validator);
+  ui->lineEdit_5->setValidator(validator);
+  ui->lineEdit_6->setValidator(validator);
+  ui->lineEdit_7->setValidator(validator);
+  ui->lineEdit_8->setValidator(validator);
+  ui->lineEdit_9->setValidator(validator);
+  ui->lineEdit_10->setValidator(validator);
+  ui->lineEdit_11->setValidator(validator);
+  ui->lineEdit_12->setValidator(validator);
+  ui->lineEdit_13->setValidator(validator);
+  ui->lineEdit_14->setValidator(validator);
+  ui->lineEdit_15->setValidator(validator);
 
   try {
     midiout = new RtMidiOut();
@@ -224,16 +242,14 @@ MainWindow::~MainWindow() { delete ui; }
 void MainWindow::txTimerAction() {
   int chan = (*cur_pkt).get_status() % 16;
   qDebug() << chan;
-  int trk_num; // 0 ~ 4
+  int trk_num = 0; // 0 ~ 4
   for(int i = 0; i < 5; i++) {
       if(g_trk_chan[i] == chan) {
           trk_num = i;
           break;
       }
   }
-  qDebug() << "track:" << trk_num;
   bool play = g_is_play[trk_num];
-  qDebug() << play;
   if(play) {
     sendCMidiPacket(*cur_pkt);
   }
@@ -758,6 +774,7 @@ void MainWindow::on_clear_button_clicked() {
   if (ui->select_5->checkState()) {
     track_5_notes.clear();
   }
+  play_trk.clear();
 }
 
 void MainWindow::on_pushButton_display_clicked()
