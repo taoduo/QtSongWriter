@@ -275,9 +275,9 @@ void MainWindow::txTimerAction() {
 }
 
 void MainWindow::on_pushButton_play_clicked() {
-    /*if(!g_stop) {
+    if(!g_stop) {
         return;
-    }*/
+    }
   play_trk.clear();
     write_track_1();
     write_track_2();
