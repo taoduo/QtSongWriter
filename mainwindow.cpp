@@ -65,7 +65,7 @@ int g_track_4_patch;
 int g_track_5_patch;
 
 int g_trk_chan[5] = {1,1,1,1,1};
-
+bool g_is_play[5] = {true, true, true, true, true};
 bool g_stop = true;
 void write_track_1() {
 
@@ -222,7 +222,21 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow() { delete ui; }
 void MainWindow::txTimerAction() {
-  sendCMidiPacket(*cur_pkt);
+  int chan = (*cur_pkt).get_status() % 16;
+  qDebug() << chan;
+  int trk_num; // 0 ~ 4
+  for(int i = 0; i < 5; i++) {
+      if(g_trk_chan[i] == chan) {
+          trk_num = i;
+          break;
+      }
+  }
+  qDebug() << "track:" << trk_num;
+  bool play = g_is_play[trk_num];
+  qDebug() << play;
+  if(play) {
+    sendCMidiPacket(*cur_pkt);
+  }
   (*cur_pkt) = (*next_pkt);
   next_pkt++;
   QTimer *timer = qobject_cast<QTimer *>(sender());
@@ -245,21 +259,11 @@ void MainWindow::on_pushButton_play_clicked() {
   // sendCMidiPacket(mp1);
   // sendCMidiPacket(mp2);
   play_trk.clear();
-  if (ui->play_1->checkState()) {
     write_track_1();
-  }
-  if (ui->play_2->checkState()) {
     write_track_2();
-  }
-  if (ui->play_3->checkState()) {
     write_track_3();
-  }
-  if (ui->play_4->checkState()) {
     write_track_4();
-  }
-  if (ui->play_5->checkState()) {
     write_track_5();
-  }
   if (play_trk.size() == 0) {
     QMessageBox msg;
     msg.setText("You have not add any notes yet.");
@@ -765,7 +769,48 @@ void MainWindow::on_pushButton_display_clicked()
     write_track_4();
     write_track_5();
     DisplayWindow display_window;
+    display_window.set_channels(g_trk_chan);
     display_window.set_display_text(play_trk);
     display_window.setModal(true);
     display_window.exec();
+}
+
+void MainWindow::on_play_1_clicked(bool checked)
+{
+    g_is_play[0] = checked;
+    if(!g_stop && !checked) {
+        stop_one_track(1);
+    }
+}
+
+void MainWindow::on_play_2_clicked(bool checked)
+{
+    g_is_play[1] = checked;
+    if(!g_stop && !checked) {
+        stop_one_track(2);
+    }
+}
+
+void MainWindow::on_play_3_clicked(bool checked)
+{
+    g_is_play[2] = checked;
+    if(!g_stop && !checked) {
+        stop_one_track(3);
+    }
+}
+
+void MainWindow::on_play_4_clicked(bool checked)
+{
+    g_is_play[3] = checked;
+    if(!g_stop && !checked) {
+        stop_one_track(4);
+    }
+}
+
+void MainWindow::on_play_5_clicked(bool checked)
+{
+    g_is_play[4] = checked;
+    if(!g_stop && !checked) {
+        stop_one_track(5);
+    }
 }

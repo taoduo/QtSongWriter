@@ -79,6 +79,16 @@ private slots:
 
     void on_pushButton_display_clicked();
 
+    void on_play_1_clicked(bool checked);
+
+    void on_play_2_clicked(bool checked);
+
+    void on_play_3_clicked(bool checked);
+
+    void on_play_4_clicked(bool checked);
+
+    void on_play_5_clicked(bool checked);
+
 private:
     Ui::MainWindow *ui;
     void init_all_chan_combo_box();
