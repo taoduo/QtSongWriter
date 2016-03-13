@@ -200,7 +200,7 @@ MainWindow::MainWindow(QWidget *parent)
   setup_comboBox_category();
   setup_trk_combox_box();
   init_all_chan_combo_box();
-  QRegExp reg("[0-9]$|[1-9][0-9]$|11[0-9]$|12[0-7]$|-");
+  QRegExp reg("[0-9]$|[1-9][0-9]$|10[0-9]$|11[0-9]$|12[0-7]$|-");
   QValidator *validator = new QRegExpValidator(reg, this);
   ui->lineEdit_0->setValidator(validator);
   ui->lineEdit_1->setValidator(validator);
