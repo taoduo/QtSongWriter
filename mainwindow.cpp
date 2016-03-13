@@ -756,9 +756,16 @@ void MainWindow::on_clear_button_clicked() {
   }
 }
 
-void MainWindow::on_pushButton_2_clicked()
+void MainWindow::on_pushButton_display_clicked()
 {
+    play_trk.clear();
+    write_track_1();
+    write_track_2();
+    write_track_3();
+    write_track_4();
+    write_track_5();
     DisplayWindow display_window;
+    display_window.set_display_text(play_trk);
     display_window.setModal(true);
     display_window.exec();
 }

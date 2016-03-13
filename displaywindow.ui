@@ -15,7 +15,7 @@
   </property>
   <widget class="QPlainTextEdit" name="plainTextEdit_display">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="geometry">
     <rect>
@@ -24,6 +24,9 @@
      <width>571</width>
      <height>341</height>
     </rect>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_close_display">

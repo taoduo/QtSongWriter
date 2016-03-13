@@ -2,7 +2,7 @@
 #define DISPLAYWINDOW_H
 
 #include <QDialog>
-
+#include "CMidiPacket43.h"
 namespace Ui {
 class DisplayWindow;
 }
@@ -14,9 +14,9 @@ class DisplayWindow : public QDialog
 public:
     explicit DisplayWindow(QWidget *parent = 0);
     ~DisplayWindow();
+    void set_display_text(std::vector<CMidiPacket43> mp_vector);
 
 private slots:
-
     void on_pushButton_close_display_clicked();
 
 private:

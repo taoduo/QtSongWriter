@@ -410,7 +410,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_2">
+          <widget class="QPushButton" name="pushButton_display">
            <property name="text">
             <string>Display</string>
            </property>
