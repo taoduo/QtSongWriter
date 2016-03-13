@@ -55,7 +55,6 @@ void DisplayWindow::set_display_text(std::vector<CMidiPacket43> mp_vector) {
     ui->progressBar_3->setMaximum(max_count);
     ui->progressBar_4->setMaximum(max_count);
     ui->progressBar_5->setMaximum(max_count);
-    qDebug() << g_note_count[0];
     ui->progressBar_1->setValue(g_note_count[0]);
     ui->progressBar_2->setValue(g_note_count[1]);
     ui->progressBar_3->setValue(g_note_count[2]);
