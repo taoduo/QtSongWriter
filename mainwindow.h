@@ -89,6 +89,8 @@ private slots:
 
     void on_play_5_clicked(bool checked);
 
+    void on_comboBox_ports_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
     void init_all_chan_combo_box();

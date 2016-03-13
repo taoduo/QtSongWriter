@@ -61,6 +61,9 @@ int g_track_5_patch;
 int g_trk_chan[5] = {1,1,1,1,1};
 bool g_is_play[5] = {true, true, true, true, true};
 bool g_stop = true;
+std::vector<std::string> ports_vec;
+std::string g_current_port;
+int port_index;
 void write_track_1() {
 
   uint16_t pan = 80;  // pan right
@@ -167,7 +170,12 @@ bool chooseMidiOutPort(RtMidiOut *rtmidi) {
 
   for (unsigned int i = 0; i < nPorts; i++) {
     portName = rtmidi->getPortName(i);
-    if (portName == kLOOK_FOR_NAME) dls_port = i;
+    ports_vec.push_back(portName);
+    if (portName == kLOOK_FOR_NAME) {
+        dls_port = i;
+        port_index = i;
+        g_current_port = portName;
+    }
   }
 
   if (dls_port == 0xBAD) return false;
@@ -230,6 +238,10 @@ MainWindow::MainWindow(QWidget *parent)
     delete midiout;
     std::exit(0);
   }
+  for(std::string str : ports_vec) {
+      ui->comboBox_ports->addItem(QString::fromStdString(str));
+  }
+  ui->comboBox_ports->setCurrentText(QString::fromStdString(g_current_port));
 }
 
 MainWindow::~MainWindow() { delete ui; }
@@ -815,4 +827,10 @@ void MainWindow::on_play_5_clicked(bool checked)
     if(!g_stop && !checked) {
         stop_one_track(5);
     }
+}
+
+void MainWindow::on_comboBox_ports_currentIndexChanged(int index)
+{
+    midiout->closePort();
+    midiout->openPort(index);
 }
