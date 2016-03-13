@@ -18,18 +18,6 @@
 #include "bluesUtils.h"
 #endif
 
-/*struct ChordTm {
-  uint32_t note1;
-  uint32_t note2;
-  uint32_t note3;
-  uint32_t note4;
-  uint16_t dur;
-};
-
-const std::vector<ChordTm> one_meas_chord_vec = {
-    {7, 10, 12, 16, 1667}, {7, 10, 12, 16, 2000}, {4, 7, 10, 12, 2667}};
-const std::vector<uint32_t> dur_vec = {667, 1000, 1667, 2000, 2667};*/
-
 // This is the implementation of the base class pure virtual function
 void CTrack_1::write_track() {}
 
